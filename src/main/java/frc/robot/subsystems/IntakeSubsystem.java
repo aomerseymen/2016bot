@@ -10,7 +10,9 @@ package frc.robot.subsystems;
 import com.revrobotics.CANDigitalInput.LimitSwitch;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
@@ -23,6 +25,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private final DigitalInput topLimitSwitch = new DigitalInput(IntakeConstants.topLimitSwitchPort);
   private final DigitalInput bottomLimitSwitch = new DigitalInput(IntakeConstants.bottomLimitSwitchPort);
+
+  private final DoubleSolenoid intakeSolenoid = new DoubleSolenoid(IntakeConstants.solenoidForwardPin,
+      IntakeConstants.solenoidBackwardPin);
  
   
   public IntakeSubsystem() {
@@ -41,6 +46,23 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean getBottomSwitch() {
     return bottomLimitSwitch.get();
+    
   
+  }
+  public void runIntake(double speed) {
+    rightIntakeMotor.set(speed);
+    
+  }
 
+  public void stopIntake() {
+    rightIntakeMotor.set(0);
+    
+  }
+  public void openIntake() {
+    intakeSolenoid.set(Value.kForward);
+  }
+
+  public void closeIntake() {
+    intakeSolenoid.set(Value.kReverse);
+  }
 }

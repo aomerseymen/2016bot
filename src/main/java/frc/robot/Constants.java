@@ -36,6 +36,8 @@ public final class Constants {
     public static int IntakeMotorPort = 0;
     public static final int topLimitSwitchPort = 2;
         public static final int bottomLimitSwitchPort = 3;
+        public static final int solenoidForwardPin = 0;
+        public static final int solenoidBackwardPin = 1;
   }
   public static final class HopperConstants{
     public static int rightMotor = 4;

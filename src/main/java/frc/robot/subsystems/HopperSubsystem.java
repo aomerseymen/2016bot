@@ -25,4 +25,12 @@ public class HopperSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+  public void RunHopper(double speed){
+    rightMotor.set(speed);
+    leftMotor.set(-speed);
+  }
+  public void StopHopper(){
+    rightMotor.set(0);
+    leftMotor.set(0);
+  }
 }
