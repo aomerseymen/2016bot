@@ -14,6 +14,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
+import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunShooter;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 import static java.util.Map.entry;
 
@@ -25,6 +31,12 @@ import static java.util.Map.entry;
  */
 public class RobotContainer {
   // The enum used as keys for selecting the command to run.
+  private final IntakeSubsystem m_intake = new IntakeSubsystem();
+  private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+  private final DriveSubsystem m_drive = new DriveSubsystem();
+  private final HopperSubsystem m_hopper = new HopperSubsystem();
+
+
   private enum CommandSelector {
     ONE, TWO, THREE
   }
@@ -62,6 +74,14 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    new JoystickButton(m_driverController, 0).whileHeld(new RunIntake(m_intake, 0.8));
+
+    new JoystickButton(m_driverController, 1).whileHeld(new RunIntake(m_intake, -0.8));
+
+    new JoystickButton(m_driverController, 2).whileHeld(new RunShooter(m_shooter, 0.8));
+
+    new JoystickButton(m_driverController, 3).whileHeld(new RunShooter(m_shooter, 0.8));
+
   }
 
   /**
