@@ -10,10 +10,13 @@ package frc.robot;
 import java.util.Map;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.JoystickConstants;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
 import frc.robot.subsystems.DriveSubsystem;
@@ -35,6 +38,8 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooter = new ShooterSubsystem();
   private final DriveSubsystem m_drive = new DriveSubsystem();
   private final HopperSubsystem m_hopper = new HopperSubsystem();
+
+  public Joystick m_driverController = new Joystick(JoystickConstants.driverControllerPort);
 
 
   private enum CommandSelector {

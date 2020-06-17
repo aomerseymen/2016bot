@@ -7,15 +7,24 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.EncoderType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.Constants.ShooterConstants;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
    * Creates a new ShooterSubsystem.
    */
-  private final VictorSP rightShooterMotor = new VictorSP(ShooterConstants.rightShooterMotorPort);
-  private final VictorSP leftShooterMotor = new VictorSP(ShooterConstants.leftShooterMotorPort);
+  private final CANSparkMax rightShooterMotor = new CANSparkMax(Constants.ShooterConstants.rightShooterMotorPin,MotorType.kBrushless);
+
+  private final CANEncoder rightWheelEncoder = rightShooterMotor.getEncoder(EncoderType.kQuadrature, 4096);
+  
   public ShooterSubsystem() {
 
   }
@@ -26,11 +35,11 @@ public class ShooterSubsystem extends SubsystemBase {
   }
   public void runShooter(double speed){
     rightShooterMotor.set(speed);
-    leftShooterMotor.set(speed);
+    
   }
   public void stopShooter()
   {
     rightShooterMotor.set(0);
-    leftShooterMotor.set(0);
+    
   }
 }
